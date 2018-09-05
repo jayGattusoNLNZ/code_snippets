@@ -1,11 +1,23 @@
 import os
 import shutil
 import tarfile
+import pickle
 
 ##### edit these two lines only #####
-source = r"Y:\DPS_Export-prod\gattusoj\export\towmey"
-destination = r"D:\finale_files\collection"
+source = r"K:\cartes_de_visites"
+destination = r"K:\cartes_de_visites_unpacked"
 #####################################
+
+if not os.path.exists(destination):
+	os.makedirs(destination)
+
+
+if not os.path.exists('files_list.pickle'):
+	files_list = os.listdir(source)
+	pickle.dump(files_list, open('files_list.pickle','wb'))
+else:
+	files_list = pickle.load(open('files_list.pickle', 'b'))
+
 
 for item in os.listdir(source):
 	item_path = os.path.join(source, item)
@@ -22,4 +34,3 @@ for item in os.listdir(source):
 			tar.extractall(destination)
 			tar.close()
 			os.remove(new_file_destination)
-
