@@ -2,9 +2,10 @@ import os
 import shutil
 import tarfile
 
-##### edit these two lines only #####
+####### #edit this line only ########
 source = r"K:\cartes_de_visites"
 #####################################
+
 for item in os.listdir(source):
 	item_path = os.path.join(source, item)
 	try:
